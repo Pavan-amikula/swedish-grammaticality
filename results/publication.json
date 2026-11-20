@@ -13,5 +13,12 @@
   "files_verified": 10,
   "github_repository": "https://github.com/Pavan-amikula/swedish-grammaticality",
   "dataset_viewer_splits_verified": 6,
-  "submission_email_sent": false
+  "submission_email_sent": false,
+  "fresh_checkout_inference": {
+    "tested_git_commit": "b32ae010b9ee74c0403375cf089475c48b99967c",
+    "samples": 120,
+    "ids_match": true,
+    "max_abs_score_difference": 0.0,
+    "default_cli_and_hub_fallback_used": true
+  }
 }
