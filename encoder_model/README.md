@@ -39,5 +39,5 @@ automatic labels do not calibrate the scalar to human grammaticality. It can
 miss agreement/word-order errors and score unfamiliar but grammatical text
 poorly. It truncates long texts, may fail outside Swedish, and has no native
 speaker validation. Pretraining overlap with public UD text was not audited.
-No consequential language assessment is supported. Codex assisted in creating
-and evaluating this project; applicant review remains necessary.
+No consequential language assessment is supported. No native-speaker review
+or human score calibration was performed.

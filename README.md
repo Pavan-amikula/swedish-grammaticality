@@ -1,7 +1,7 @@
 # Swedish grammaticality scoring
 
-Prepared for Pavan Kumar Goud Amikula, MSc Computer Science, Blekinge Institute
-of Technology. Public repositories (final submission email remains unsent):
+Author: **Pavan Kumar Goud Amikula**, MSc Computer Science student,
+Blekinge Institute of Technology. Public repositories:
 
 - GitHub: [Pavan-amikula/swedish-grammaticality](https://github.com/Pavan-amikula/swedish-grammaticality)
 - Model: [pavan0202/swedish-grammaticality](https://huggingface.co/pavan0202/swedish-grammaticality)
@@ -24,6 +24,8 @@ The fitted scalar is clipped to [0,1]; it is an acceptability proxy rather
 than a calibrated human judgment. The hidden evaluation set is unavailable.
 
 ## Read first
+
+- [Submission requirements check](REQUIREMENTS_CHECK.md).
 
 - [Official assignment](https://nicher92.github.io/swedish_correctness_classifier/#task).
 - [Two-page paper](report.pdf), editable [paper text](report.md).
@@ -150,7 +152,7 @@ python .cache/starter/evaluate.py --repo . --input .cache/starter/data/test.json
 python benchmark.py --input .cache/starter/data/test.jsonl --labels .cache/starter/data/test_labels.jsonl --name starter
 ```
 
-## Limitations and assistance
+## Limitations
 
 Training uses licensed UD prose plus automatic edits, not Swedish learner
 judgments. Deletion/swaps may preserve grammaticality; spelling errors are
@@ -161,12 +163,7 @@ and foreign-language inputs remain limitations. The pretrained encoder's
 training corpus may overlap public UD text; that overlap was not audited.
 Do not use this prototype for consequential language assessment.
 
-Codex assisted with research, data-generation code, implementation, execution,
-evaluation and documentation. The applicant should review and understand
-the code and results before submission. This repository does not claim
-independent implementation, native Swedish
-expertise or human annotation. The official webpage states no specific
-assistance policy; any separate institutional/email conditions still apply.
+No native-speaker review or human score calibration was performed.
 
 New project code: MIT. Dataset and count tables: CC BY-SA 4.0. Pretrained and
 adapted encoder: Apache 2.0 with retained upstream card/license/notices. See

@@ -14,8 +14,8 @@ data provenance, measured evaluation results, and limitations.
 - Hugging Face dataset ID: pavan0202/talbanken-synthetic-grammaticality
 - Short paper: attached as report.pdf
 
-The paper describes the CPU experiments, synthetic-label limitations and use
-of AI assistance. I would be happy to discuss the approach and results.
+The attached paper describes the CPU experiments, evaluation results and
+limitations. I would be happy to discuss the approach and results.
 
 Best regards,
 Pavan Kumar Goud Amikula

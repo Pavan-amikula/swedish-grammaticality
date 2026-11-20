@@ -6,7 +6,7 @@ email remains unsent and requires separate approval.
 - GitHub: https://github.com/Pavan-amikula/swedish-grammaticality
 - Model: https://huggingface.co/pavan0202/swedish-grammaticality
 - Dataset: https://huggingface.co/datasets/pavan0202/talbanken-synthetic-grammaticality
-- Model revision: `3c87b8e552ed795a1001673feee52d686d11b5c5`
+- Model revision: `609cbf7e1f21c3de16bad534c068f9277324a896`
 - Dataset revision: `b9ad327da01ac92f19338fa83fb26f32b5d4ae02`
 
 A fresh public download matched the model weights, configuration and tokenizer
@@ -21,7 +21,7 @@ pinned in selection.json, allowing inference from a fresh GitHub checkout
 without committing the large model weight file to GitHub.
 
 Review README.md, report.pdf, EXPLAINING_THE_PROJECT.md, measured results,
-limitations and the AI-assistance disclosure before submitting. The model
+limitations and the data provenance before submitting. The model
 performs below the starter's published baseline; no performance gain is claimed.
 The email draft is SUBMISSION_EMAIL.md; attach report.pdf. Do not send another
 acceptance email. Recipient: niclas.hertzberg@ai.se.

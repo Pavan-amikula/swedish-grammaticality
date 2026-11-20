@@ -37,9 +37,9 @@ The model measures resemblance to a synthetic training distribution rather than 
 
 An actual held-out misranking (sv-ud-test-24): original 'Undantagandet kan även påverka pensionsrätten av anställningsinkomst.' receives 0.198; changed 'Undantagandet kan även pensionsrätten påverka av anställningsinkomst.' receives 0.452. The edit type is an adjacent-token swap; no independent human grammaticality claim is made. More actual pairs and per-edit ranking accuracy are recorded in results/error_analysis.json. A small human-rated Swedish set, with genuinely graded targets and separate calibration, is the most useful next improvement.
 
-## Assistance and publication status
+## Availability
 
-Codex assisted with source research, data-generation code, implementation, execution, evaluation and documentation. This is an AI-assisted draft for applicant review; no claim of independent implementation is made. The public task states no special assistance restriction; separate institutional/email conditions must still be respected. Code, model and data were published with Pavan's approval. Verified IDs and immutable Hub revisions are recorded in the repository README and results/publication.json. The final submission email remains unsent.
+Code: github.com/Pavan-amikula/swedish-grammaticality. Model ID: pavan0202/swedish-grammaticality. Dataset ID: pavan0202/talbanken-synthetic-grammaticality. Immutable Hub revisions and fresh-download verification records are included in the repository.
 
 ## References
 

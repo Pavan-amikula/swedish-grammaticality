@@ -2,5 +2,5 @@
   "encoder_model/model.safetensors": "bf827c0abae7c41dfbe90204957fe1d796624d220617ec365320eea8e0c6d601",
   "encoder_model/config.json": "0d02d1eae2923e31b5eef93c23a1083c253a493c5eaa54f10f8479fd663b95fd",
   "model/model.safetensors": "bed006a62f701372a5fd2c84d637166a528dbd90f3457359a318727927fc0f74",
-  "selection.json": "08bd7e287bccd734a7e885af66f638c937c7d06f2fc5a2ea19b11ea9cf84cad9"
+  "selection.json": "a9fbeb66aeef2a7254432d409aa33483b09bc47f2f15dcfc9f84c66205a5ccb0"
 }

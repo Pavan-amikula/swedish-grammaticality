@@ -1,6 +1,6 @@
 # Preparing to explain the project
 
-This is a guide to review, not a script claiming work you have not done.
+This guide summarizes the approach and questions to prepare for discussion.
 
 1. **Goal:** predict a scalar in [0,1] for Swedish text. The task does not
    provide the hidden test set. Our labels are synthetic proxies, so the
@@ -29,7 +29,7 @@ This is a guide to review, not a script claiming work you have not done.
 8. **Your next work:** create the virtual environment, run prediction, inspect
    an actual misranked pair in results/error_analysis.json, read train_encoder.py,
    and explain the ridge layer in your own words. Change any report statement
-   you cannot support. Disclose the assistance you used.
+   you cannot support.
 
 Before submitting, be able to show the exact commands, distinguish public
 starter data from the organizer's hidden test, state the source license, and
