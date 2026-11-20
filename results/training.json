@@ -1,0 +1,62 @@
+{
+  "validation_trials": [
+    {
+      "family": "unigram",
+      "alpha": 1.0,
+      "mae": 0.32571286649284703,
+      "spearman": 0.054673960980428746,
+      "roc_auc": 0.539282088080524
+    },
+    {
+      "family": "unigram",
+      "alpha": 10.0,
+      "mae": 0.3257219685161625,
+      "spearman": 0.05464083961526452,
+      "roc_auc": 0.5392582911089633
+    },
+    {
+      "family": "unigram",
+      "alpha": 100.0,
+      "mae": 0.3258051025183464,
+      "spearman": 0.054810692693083786,
+      "roc_auc": 0.539380326860557
+    },
+    {
+      "family": "ngram",
+      "alpha": 1.0,
+      "mae": 0.3186677560951696,
+      "spearman": 0.10199837624147452,
+      "roc_auc": 0.5732836891895849
+    },
+    {
+      "family": "ngram",
+      "alpha": 10.0,
+      "mae": 0.3187410798469757,
+      "spearman": 0.10201536153335,
+      "roc_auc": 0.5732958927647444
+    },
+    {
+      "family": "ngram",
+      "alpha": 100.0,
+      "mae": 0.31937007649146987,
+      "spearman": 0.10182172920596948,
+      "roc_auc": 0.5731567720079275
+    }
+  ],
+  "selected": {
+    "family": "ngram",
+    "alpha": 10.0,
+    "mae": 0.3187410798469757,
+    "spearman": 0.10201536153335,
+    "roc_auc": 0.5732958927647444
+  },
+  "synthetic_test": {
+    "mae": 0.32514116471207394,
+    "spearman": 0.10202274464228389,
+    "roc_auc": 0.5731542626370212
+  },
+  "constant_test_mae": 0.32462081713028107,
+  "trainable_parameters": 19,
+  "count_table_entries": 170163,
+  "training_seconds": 58.18016929999999
+}

@@ -1,0 +1,7 @@
+This model derives from AI-Sweden-Models/ModernBERT-base, revision
+0bf738233da3c1bd32bc88cdbeb2c2c01dbac0eb, released under Apache License 2.0.
+https://huggingface.co/AI-Sweden-Models/ModernBERT-base
+The original model card is included as BASE_MODEL_CARD.md.
+Changes: frozen feature extraction, mean pooling and a fitted regression head.
+Training text is derived from UD Swedish-Talbanken under CC BY-SA 4.0;
+see the dataset card and attribution. This is a research prototype.

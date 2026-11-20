@@ -1,0 +1,17 @@
+{
+  "model_directory": "encoder_model",
+  "criterion": "ROC-AUC on the same 128-group validation subset",
+  "ngram": {
+    "mae": 0.3151916649612092,
+    "spearman": 0.10906592146309868,
+    "roc_auc": 0.5783420138888888
+  },
+  "encoder": {
+    "alpha": 1000.0,
+    "mae": 0.29355064034461975,
+    "spearman": 0.24535338202405596,
+    "roc_auc": 0.676207527281746
+  },
+  "hub_model_id": "pavan0202/swedish-grammaticality",
+  "hub_revision": "3c87b8e552ed795a1001673feee52d686d11b5c5"
+}

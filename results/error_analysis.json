@@ -1,0 +1,54 @@
+{
+  "pair_results": {
+    "swap": {
+      "pairs": 1073,
+      "strict_pair_accuracy": 0.8918918918918919
+    },
+    "delete": {
+      "pairs": 983,
+      "strict_pair_accuracy": 0.8575788402848423
+    },
+    "duplicate": {
+      "pairs": 1073,
+      "strict_pair_accuracy": 0.8918918918918919
+    },
+    "ending": {
+      "pairs": 1071,
+      "strict_pair_accuracy": 0.8879551820728291
+    }
+  },
+  "examples": [
+    {
+      "kind": "swap",
+      "source_id": "sv-ud-test-24",
+      "original": "Undantagandet kan även påverka pensionsrätten av anställningsinkomst.",
+      "changed": "Undantagandet kan även pensionsrätten påverka av anställningsinkomst.",
+      "original_prediction": 0.19772464036941528,
+      "changed_prediction": 0.45242708921432495
+    },
+    {
+      "kind": "delete",
+      "source_id": "sv-ud-test-751",
+      "original": "Det behövs allt större doser för att framkalla effekt.",
+      "changed": "Det behövs allt större doser för framkalla effekt.",
+      "original_prediction": 0.1688331961631775,
+      "changed_prediction": 0.3710119128227234
+    },
+    {
+      "kind": "duplicate",
+      "source_id": "sv-ud-test-793",
+      "original": "Ett sådant framtidsperspektiv var minst av allt lockande.",
+      "changed": "Ett sådant framtidsperspektiv var minst av allt allt lockande.",
+      "original_prediction": 0.14507794380187988,
+      "changed_prediction": 0.32181626558303833
+    },
+    {
+      "kind": "ending",
+      "source_id": "sv-ud-test-545",
+      "original": "Deras val av äktenskapspartner blev kanske slumpmässigt.",
+      "changed": "Dera val av äktenskapspartner blev kanske slumpmässigt.",
+      "original_prediction": 0.2797759175300598,
+      "changed_prediction": 0.5520598292350769
+    }
+  ]
+}

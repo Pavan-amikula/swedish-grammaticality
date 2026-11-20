@@ -1,0 +1,35 @@
+{
+  "base": "AI-Sweden-Models/ModernBERT-base",
+  "revision": "0bf738233da3c1bd32bc88cdbeb2c2c01dbac0eb",
+  "validation_trials": [
+    {
+      "alpha": 10.0,
+      "mae": 0.29154059290885925,
+      "spearman": 0.1420561635180646,
+      "roc_auc": 0.5929516989087301
+    },
+    {
+      "alpha": 100.0,
+      "mae": 0.2762369215488434,
+      "spearman": 0.21410867846162268,
+      "roc_auc": 0.649840339781746
+    },
+    {
+      "alpha": 1000.0,
+      "mae": 0.29355064034461975,
+      "spearman": 0.24535338202405596,
+      "roc_auc": 0.676207527281746
+    }
+  ],
+  "selected": {
+    "alpha": 1000.0,
+    "mae": 0.29355064034461975,
+    "spearman": 0.24535338202405596,
+    "roc_auc": 0.676207527281746
+  },
+  "n_calibration": 1257,
+  "n_validation": 632,
+  "parameters": 149605633,
+  "fitted_parameters": 769,
+  "training_seconds": 227.5647424
+}

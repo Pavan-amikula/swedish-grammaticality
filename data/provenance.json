@@ -1,0 +1,16 @@
+{
+  "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Swedish-Talbanken/463c1eb7176c19e8d7cc54e5f5b0f21d6d6ce44d/",
+  "revision": "463c1eb7176c19e8d7cc54e5f5b0f21d6d6ce44d",
+  "seed": 42,
+  "sha256": {
+    "sv_talbanken-ud-train.conllu": "133cf28248d4098c68b49f17999cb85403da1d93c9678cd70a564218cc4540a5",
+    "sv_talbanken-ud-dev.conllu": "31917fc04cfe9ef7ce8c11ed8570b739a0cefdcda5e06ff93207e6d84f37117b",
+    "sv_talbanken-ud-test.conllu": "b8909c4f5f2c64b3cee251de7004fa293717d309e54ca59d149a61d75e8571d7"
+  },
+  "counts": {
+    "lm_train": 2384,
+    "calibration": 6242,
+    "validation": 2253,
+    "test": 5273
+  }
+}

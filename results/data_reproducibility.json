@@ -1,0 +1,11 @@
+{
+  "regeneration_byte_identical": true,
+  "canonical_lf": true,
+  "sha256": {
+    "lm_train.jsonl": "fc22449da953847c40c7301d1f1b877772157fb812261f5505f0e739b7cc7a67",
+    "calibration.jsonl": "1a4bd58502ee5466f7acfa986cc6a528cc8f50334e0a7e54d33536bece5de09e",
+    "validation.jsonl": "2e70ce8db0559d34742e6cd4534439dadf09aee8e219d76c5fd07d66f2450317",
+    "test.jsonl": "d0064464fbb67910d3fd1758d3cca630cfa3084bf5ed2a77756d67eca854b151",
+    "provenance.json": "f9330366b6cf9737d258d5106db53a49261faac01dc9257d9ef091204c3c0a66"
+  }
+}

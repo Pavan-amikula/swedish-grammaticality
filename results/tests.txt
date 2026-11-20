@@ -1,0 +1,19 @@
+test_hub_save_reload_preserves_scores (test_project.ProjectTests.test_hub_save_reload_preserves_scores) ... ok
+test_language_model_probabilities_never_exceed_one (test_project.ProjectTests.test_language_model_probabilities_never_exceed_one) ... ok
+test_partitions_have_no_document_or_text_overlap (test_project.ProjectTests.test_partitions_have_no_document_or_text_overlap) ... ok
+test_required_cli_and_empty_input (test_project.ProjectTests.test_required_cli_and_empty_input) ... W1120 20:31:18.240000 8928 site-packages\torch\distributed\elastic\multiprocessing\redirects.py:29] NOTE: Redirects are currently not supported in Windows or MacOs.
+
+Loading weights:   0%|          | 0/138 [00:00<?, ?it/s]
+Loading weights:  15%|#5        | 21/138 [00:00<00:00, 179.28it/s]
+Loading weights:  28%|##8       | 39/138 [00:00<00:00, 159.13it/s]
+Loading weights:  40%|###9      | 55/138 [00:00<00:00, 131.16it/s]
+Loading weights:  54%|#####4    | 75/138 [00:00<00:00, 152.27it/s]
+Loading weights: 100%|##########| 138/138 [00:00<00:00, 240.56it/s]
+ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 34.486s
+
+OK
+Loading weights from local directory
+Loading weights from local directory
