@@ -14,6 +14,7 @@ email thread was not independently retrieved.
 | Public Hugging Face model | pavan0202/swedish-grammaticality, revision recorded in selection.json |
 | Public training data | pavan0202/swedish-grammaticality-training; seven splits, sources and per-file licenses |
 | Public code | https://github.com/Pavan-amikula/swedish-grammaticality |
+| Fresh public checkout | 120 predictions matched; max absolute difference 0; pinned Hub download verified |
 | Exact required CLI | python predict.py --input test.jsonl --output scores.jsonl |
 | One id/score per input | Official evaluator and CLI edge-case tests passed |
 | Reproducible preparation/training | Pinned source/base revisions, dependency versions, seed 42 and commands |

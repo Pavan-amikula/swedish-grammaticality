@@ -18,7 +18,8 @@ files. All 11 current data files matched, and the viewer exposes all seven
 splits with no pending/failed configurations. Exact verification is in
 results/publication.json and results/dataset_v2_verification.json. Eight tests
 passed; the official evaluator also passed. The clean-download prediction
-check is recorded separately in results/fresh_checkout_v2.json when complete.
+check passed on 120 examples with a maximum score difference of 0;
+results/fresh_checkout_v2.json records the exact tested code/model revisions.
 
 The final email is drafted in SUBMISSION_EMAIL.md and has **not been sent**.
 Attach report.pdf. The deadline supplied in the email summary is
