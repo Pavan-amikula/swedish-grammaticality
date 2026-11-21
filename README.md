@@ -14,7 +14,7 @@ The score is not a human-validated severity rating.
 - Current training data: https://huggingface.co/datasets/pavan0202/swedish-grammaticality-training
 - Original synthetic baseline data: https://huggingface.co/datasets/pavan0202/talbanken-synthetic-grammaticality
 - [Paper](report.pdf), [editable paper](report.md), [requirement check](REQUIREMENTS_CHECK.md)
-- [Submission email draft](SUBMISSION_EMAIL.md), [publication record](PUBLISHING.md)
+- [Submission email](SUBMISSION_EMAIL.md), [publication record](PUBLISHING.md)
 - [Explanation guide](EXPLAINING_THE_PROJECT.md)
 
 ## Reproduce the selected model
@@ -147,4 +147,4 @@ native-speaker review was performed for this project.
 
 Code: MIT. Base/adapted model: Apache 2.0. DaLAJ files: CC BY 4.0; synthetic
 bridge: CC BY-SA 4.0. Required original notices and citations are retained.
-The submission email remains unsent pending final approval.
+The submission email was sent to niclas.hertzberg@ai.se with report.pdf attached; Gmail confirmed sending.

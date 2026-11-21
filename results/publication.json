@@ -18,7 +18,7 @@
   "dataset_files_verified": 11,
   "dataset_viewer_splits_verified": 7,
   "github_repository": "https://github.com/Pavan-amikula/swedish-grammaticality",
-  "submission_email_sent": false,
+  "submission_email_sent": true,
   "legacy_model_revision": "609cbf7e1f21c3de16bad534c068f9277324a896",
   "fresh_checkout_inference": {
     "tested_git_commit": "b34bc1fa7d6f4e8d5d0fc9e3040187a73675b5d1",
@@ -34,5 +34,15 @@
       "tokenizer.json": "58a60d3bae3f885989da6ab0c3ad0ed311e3e733e8527aead8e14f9c88ed5aa2",
       "tokenizer_config.json": "bf658404babfeca805978a264a4addf344a1c55f5d6939212eaff274d8e909f3"
     }
+  },
+  "submission_email_confirmation": {
+    "status": "sent",
+    "recipient": "niclas.hertzberg@ai.se",
+    "subject": "AI Sweden thesis assignment \u2013 Swedish Grammaticality Scoring \u2013 Pavan Kumar Goud Amikula",
+    "attachment": "report.pdf",
+    "attachment_sha256": "f3808916b8c93fe25ced3716c17cd4eb2bb5ed0bc69a1bd8cee1e61346d8b9dd",
+    "confirmation": "Gmail displayed Message sent after sending the fully attached email",
+    "recorded_at_utc": "2026-11-21T18:28:43.389815+00:00",
+    "delivery_or_read_receipt_claimed": false
   }
 }

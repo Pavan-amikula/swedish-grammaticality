@@ -2,8 +2,8 @@
 
 Author: Pavan Kumar Goud Amikula. Updated 21 November 2026.
 
-The stronger model and cleaned training data are public. This record does not
-constitute sending the assignment email.
+The stronger model and cleaned training data are public. The assignment
+submission email has now been sent, as confirmed by Gmail.
 
 | Artifact | Public location | Immutable revision |
 |---|---|---|
@@ -21,7 +21,10 @@ passed; the official evaluator also passed. The clean-download prediction
 check passed on 120 examples with a maximum score difference of 0;
 results/fresh_checkout_v2.json records the exact tested code/model revisions.
 
-The final email is drafted in SUBMISSION_EMAIL.md and has **not been sent**.
-Attach report.pdf. The deadline supplied in the email summary is
-4 December 2026, 23:59 CET (5 December, 04:29 IST); the recipient is
-niclas.hertzberg@ai.se. Sending requires separate final approval.
+The final email was sent to niclas.hertzberg@ai.se with report.pdf attached.
+Gmail displayed Message sent. SUBMISSION_EMAIL.md preserves the exact text;
+results/submission_confirmation.json records the confirmation and attachment hash.
+Sending does not establish receipt or reading by the recipient.
+
+The original Julia Adamsson email was checked directly in Gmail. Its deadline
+is 4 December 2026, 23:59 CET (5 December, 04:29 IST).

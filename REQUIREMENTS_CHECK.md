@@ -4,8 +4,8 @@ Author: Pavan Kumar Goud Amikula. Checked 21 November 2026.
 
 Checked against the public assignment at
 https://nicher92.github.io/swedish_correctness_classifier/
-and the email details supplied in this conversation. The original complete
-email thread was not independently retrieved.
+and Julia Adamsson's original assignment email dated 20 November 2026,
+read directly in Gmail before submission.
 
 | Requirement | Evidence / status |
 |---|---|
@@ -25,7 +25,7 @@ email thread was not independently retrieved.
 | Held-out evaluation | Learner test n=1180, AUC 0.730689; bootstrap and error analysis retained |
 | Tests | All eight passed; full output in results/tests_v2.txt |
 | Author | Pavan Kumar Goud Amikula; mandatory upstream credits/licenses retained |
-| Email package | Correct recipient/links and paper attachment named; draft remains unsent |
+| Email package | Sent to the specified recipient with all links and report.pdf attached; Gmail confirmed sending |
 
 The model was selected using validation only. Learner validation improved by
 0.121696 AUC and synthetic bridge validation by
@@ -38,4 +38,4 @@ measured performance does not establish that this is the best possible model
 or guarantee thesis selection.
 
 Deadline from the supplied email details: 4 December 2026, 23:59 CET
-(5 December 2026, 04:29 IST). Final submission email has not been sent.
+(5 December 2026, 04:29 IST). Final submission email was sent; Gmail confirmed Message sent.
