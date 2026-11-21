@@ -1,0 +1,144 @@
+{
+  "architectures": [
+    "ModernBertForSequenceClassification"
+  ],
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "bos_token_id": 50281,
+  "classifier_activation": "silu",
+  "classifier_bias": false,
+  "classifier_dropout": 0.0,
+  "classifier_pooling": "mean",
+  "cls_token_id": 50281,
+  "decoder_bias": true,
+  "deterministic_flash_attn": false,
+  "dtype": "float32",
+  "embedding_dropout": 0.0,
+  "eos_token_id": 50282,
+  "global_attn_every_n_layers": 3,
+  "gradient_checkpointing": false,
+  "hidden_activation": "gelu",
+  "hidden_size": 768,
+  "id2label": {
+    "0": "incorrect",
+    "1": "correct"
+  },
+  "initializer_cutoff_factor": 2.0,
+  "initializer_range": 0.02,
+  "intermediate_size": 1152,
+  "label2id": {
+    "correct": 1,
+    "incorrect": 0
+  },
+  "layer_norm_eps": 1e-05,
+  "layer_types": [
+    "full_attention",
+    "sliding_attention",
+    "sliding_attention",
+    "full_attention",
+    "sliding_attention",
+    "sliding_attention",
+    "full_attention",
+    "sliding_attention",
+    "sliding_attention",
+    "full_attention",
+    "sliding_attention",
+    "sliding_attention",
+    "full_attention",
+    "sliding_attention",
+    "sliding_attention",
+    "full_attention",
+    "sliding_attention",
+    "sliding_attention",
+    "full_attention",
+    "sliding_attention",
+    "sliding_attention",
+    "full_attention"
+  ],
+  "local_attention": 128,
+  "max_position_embeddings": 8192,
+  "mlp_bias": false,
+  "mlp_dropout": 0.0,
+  "model_type": "modernbert",
+  "norm_bias": false,
+  "norm_eps": 1e-05,
+  "num_attention_heads": 12,
+  "num_hidden_layers": 22,
+  "pad_token_id": 50283,
+  "position_embedding_type": "absolute",
+  "problem_type": "single_label_classification",
+  "repad_logits_with_grad": false,
+  "rope_parameters": {
+    "full_attention": {
+      "rope_theta": 160000.0,
+      "rope_type": "default"
+    },
+    "sliding_attention": {
+      "rope_theta": 10000.0,
+      "rope_type": "default"
+    }
+  },
+  "scoring_attention_implementation": "eager",
+  "scoring_max_length": 128,
+  "scoring_temperature": 3.0,
+  "sep_token_id": 50282,
+  "sparse_pred_ignore_index": -100,
+  "sparse_prediction": false,
+  "tie_word_embeddings": true,
+  "training_provenance": {
+    "base": "AI-Sweden-Models/ModernBERT-base",
+    "data": "data/grammar/provenance.json",
+    "protocol": {
+      "encoder_learning_rate": 3e-05,
+      "fine_tune_blocks": 6,
+      "fine_tune_dropout": 0.0,
+      "fine_tune_epochs": 2,
+      "frozen_head_max_epochs": 12,
+      "frozen_head_patience": 3,
+      "head_learning_rate": 0.0003,
+      "inference_batch_size": 32,
+      "max_length": 128,
+      "objective": "0.75*human_validation_auc+0.25*ud_validation_auc",
+      "paired_rank_loss_weight": 0.5,
+      "seed": 42,
+      "temperature_grid": [
+        0.5,
+        0.75,
+        1.0,
+        1.5,
+        2.0,
+        3.0,
+        5.0
+      ],
+      "train_batch_size": 16,
+      "warmup_fraction": 0.06,
+      "weight_decay": 0.01
+    },
+    "revision": "0bf738233da3c1bd32bc88cdbeb2c2c01dbac0eb",
+    "selected": {
+      "bridge_validation": {
+        "accuracy": 0.6675,
+        "brier": 0.26140922725688404,
+        "log_loss": 0.9404796268435459,
+        "n": 400,
+        "roc_auc": 0.73415,
+        "spearman": 0.40556096397224534
+      },
+      "epoch": 2,
+      "epoch_seconds": 11402.741058999993,
+      "mean_loss": 0.4175966174494136,
+      "objective": 0.7195215107572269,
+      "stage": "fine_tune_last_6",
+      "validation": {
+        "accuracy": 0.6613672496025437,
+        "brier": 0.2421813973859533,
+        "log_loss": 0.7549278499721898,
+        "n": 1258,
+        "roc_auc": 0.7146453476763025,
+        "spearman": 0.37177676524392306
+      }
+    }
+  },
+  "transformers_version": "5.20.2",
+  "vocab_size": 50368
+}

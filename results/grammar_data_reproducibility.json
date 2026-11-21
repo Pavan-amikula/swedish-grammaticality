@@ -1,0 +1,12 @@
+{
+  "all_seven_data_files_byte_identical": true,
+  "files": {
+    "bridge_test.jsonl": true,
+    "bridge_train.jsonl": true,
+    "bridge_validation.jsonl": true,
+    "calibration.jsonl": true,
+    "test.jsonl": true,
+    "train.jsonl": true,
+    "validation.jsonl": true
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "model_id": "pavan0202/swedish-grammaticality",
+  "model_revision": "609cbf7e1f21c3de16bad534c068f9277324a896",
+  "binary_and_config_files_verified": [
+    "model.safetensors",
+    "config.json",
+    "tokenizer.json",
+    "tokenizer_config.json"
+  ],
+  "download_sha256_matches": true,
+  "dataset_id": "pavan0202/talbanken-synthetic-grammaticality",
+  "dataset_revision": "b9ad327da01ac92f19338fa83fb26f32b5d4ae02",
+  "files_verified": 10,
+  "github_repository": "https://github.com/Pavan-amikula/swedish-grammaticality",
+  "dataset_viewer_splits_verified": 6,
+  "submission_email_sent": false,
+  "fresh_checkout_inference": {
+    "tested_git_commit": "b32ae010b9ee74c0403375cf089475c48b99967c",
+    "samples": 120,
+    "ids_match": true,
+    "max_abs_score_difference": 0.0,
+    "default_cli_and_hub_fallback_used": true
+  },
+  "model_parameter_count_verified": 149605633,
+  "documentation_only_revision_weights_unchanged": true
+}

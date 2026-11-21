@@ -1,0 +1,24 @@
+{
+  "seed": 42,
+  "max_length": 128,
+  "frozen_head_max_epochs": 12,
+  "frozen_head_patience": 3,
+  "fine_tune_epochs": 2,
+  "fine_tune_blocks": 6,
+  "encoder_learning_rate": 3e-05,
+  "head_learning_rate": 0.0003,
+  "weight_decay": 0.01,
+  "train_batch_size": 16,
+  "inference_batch_size": 32,
+  "warmup_fraction": 0.06,
+  "objective": "0.75*human_validation_auc+0.25*ud_validation_auc",
+  "temperature_grid": [
+    0.5,
+    0.75,
+    1.0,
+    1.5,
+    2.0,
+    3.0,
+    5.0
+  ]
+}

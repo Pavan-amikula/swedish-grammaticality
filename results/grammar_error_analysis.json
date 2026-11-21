@@ -1,0 +1,71 @@
+{
+  "human_test_candidate": {
+    "n": 1180,
+    "roc_auc": 0.7306894570525712,
+    "spearman": 0.3995660038665987,
+    "accuracy": 0.6652542372881356,
+    "brier": 0.20875052925844684,
+    "log_loss": 0.6033715871286496
+  },
+  "human_test_legacy": {
+    "n": 1180,
+    "roc_auc": 0.6056291295604711,
+    "spearman": 0.1829583857581559,
+    "accuracy": 0.5220338983050847,
+    "brier": 0.29940307852581094,
+    "log_loss": 0.9914152100965208
+  },
+  "strict_pair_accuracy_candidate": 0.847457627118644,
+  "strict_pair_accuracy_legacy": 0.7423728813559322,
+  "human_test_auc_delta": 0.12506032749210005,
+  "auc_delta_group_bootstrap_95_ci": [
+    0.1061223427176098,
+    0.1439523843723067
+  ],
+  "bootstrap_replicates": 1000,
+  "bootstrap_seed": 42,
+  "error_type_slices": {
+    "M": {
+      "pairs": 204,
+      "candidate_auc": 0.7645857362552865,
+      "legacy_auc": 0.6185601691657054
+    },
+    "S": {
+      "pairs": 127,
+      "candidate_auc": 0.7163494326988654,
+      "legacy_auc": 0.6151032302064605
+    },
+    "L": {
+      "pairs": 144,
+      "candidate_auc": 0.6286651234567902,
+      "legacy_auc": 0.5637056327160493
+    },
+    "O": {
+      "pairs": 131,
+      "candidate_auc": 0.8155701882174697,
+      "legacy_auc": 0.632713711322184
+    },
+    "P": {
+      "pairs": 21,
+      "candidate_auc": 0.8571428571428571,
+      "legacy_auc": 0.6553287981859411
+    }
+  },
+  "example": {
+    "group": "dalaj-186555978e4f83af0ef5d5296081d704c55c8d655dddeb72b52ceea40c8efae4",
+    "error_type": "S",
+    "correct": "Därför började jag min i kurs tyska och jag gick på olika fester.",
+    "incorrect": "Därför började jag min kurs tyska och jag gick på olika fester.",
+    "correct_score": 0.046745654195547104,
+    "incorrect_score": 0.5136642456054688
+  },
+  "legacy_bridge_test": {
+    "n": 400,
+    "roc_auc": 0.6814,
+    "spearman": 0.3142248120336291,
+    "accuracy": 0.5125,
+    "brier": 0.3001805915602336,
+    "log_loss": 0.9560044676629971,
+    "origin": "stored previous full-UD-test predictions; identical input IDs"
+  }
+}

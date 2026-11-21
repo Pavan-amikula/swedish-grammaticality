@@ -1,0 +1,61 @@
+{
+  "repository": "sprakbanken-se/superlim-2",
+  "revision": "e70516a7f2397b68e4f2bef3cb984944b1c670eb",
+  "seed": 42,
+  "curation_version": "v3-source-confirmed-spacing",
+  "license": "CC-BY-4.0 (DaLAJ); CC-BY-SA-4.0 (UD bridge)",
+  "source_sha256": {
+    "train": "8952f66b92852bfd1a2d76a1918a48b89a2f26e13b689da22af87962cf6700b7",
+    "dev": "ebae9d1997dad0385f120a4eeed252a76cdb7155bc685e5dacd32684f302855c",
+    "test": "19ad8aea55d5f2f3e47b2b3118cd7b76d40064670e43ce6c0687424fe719d586"
+  },
+  "rejected": {
+    "unchanged_or_length": 1057,
+    "length_or_encoding": 78,
+    "no_published_correct_counterpart": 4606
+  },
+  "filter_counts": {
+    "source_members_excluded_from_earlier_splits": 39
+  },
+  "eligible_families": {
+    "train": 4645,
+    "dev": 629,
+    "test": 590
+  },
+  "rows": {
+    "calibration": 1000,
+    "train": 8000,
+    "validation": 1258,
+    "test": 1180,
+    "bridge_train": 800,
+    "bridge_validation": 400,
+    "bridge_test": 400
+  },
+  "error_types_train": {
+    "O": 826,
+    "L": 822,
+    "M": 1182,
+    "S": 701,
+    "L, M": 36,
+    "L, M, O": 4,
+    "L, S": 128,
+    "M, O": 91,
+    "L, O": 20,
+    "P": 169,
+    "O, S": 4,
+    "": 1,
+    "L, O, S": 3,
+    "M, S": 12,
+    "M, O, S": 1
+  },
+  "prepared_sha256": {
+    "bridge_test.jsonl": "c79da2230d5c4d5cb7b4b589fa69f4e89059705206dece340803f37f95818685",
+    "bridge_train.jsonl": "9158aabe515f83905917d195c833d710ef8b30957ebbfaebd6bf8f2e46562f40",
+    "bridge_validation.jsonl": "fb47409b74f38c1d91989b8c0da2710d459256a5f96199ae34b332196cf13b92",
+    "calibration.jsonl": "ba0bb6bb97f13e3f74a50cf7cbf3aa941417b37eb660178954549b26a3e568eb",
+    "test.jsonl": "094b96f1470902fa2d8b2339acc6054f04a249e734fb05b44d35d14668aa4721",
+    "train.jsonl": "5d8aeba3aa01207dfc86631e84514026308f93f6b9934a4039c3482a2a3d8975",
+    "validation.jsonl": "3b9614c6ca3f0aa442996cb8dc017b762de521d3cd9c5e237136444b6a8df834"
+  },
+  "group_and_text_overlap_checks_passed": true
+}

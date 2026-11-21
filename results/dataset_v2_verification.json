@@ -1,0 +1,59 @@
+{
+  "dataset_id": "pavan0202/swedish-grammaticality-training",
+  "revision": "00c58431768558186c8f4a11306fd5392f2250a0",
+  "all_files_match": true,
+  "sha256": {
+    "bridge_test.jsonl": "c79da2230d5c4d5cb7b4b589fa69f4e89059705206dece340803f37f95818685",
+    "bridge_train.jsonl": "9158aabe515f83905917d195c833d710ef8b30957ebbfaebd6bf8f2e46562f40",
+    "bridge_validation.jsonl": "fb47409b74f38c1d91989b8c0da2710d459256a5f96199ae34b332196cf13b92",
+    "calibration.jsonl": "ba0bb6bb97f13e3f74a50cf7cbf3aa941417b37eb660178954549b26a3e568eb",
+    "LICENSE_DALAJ_CC-BY-4.0.txt": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
+    "LICENSE_TALBANKEN_CC-BY-SA-4.0.txt": "55d116ac4f9bc34715c7823a5f5ca2e4c0cac4917db9e58a470a3d48033d261c",
+    "provenance.json": "7cb34a27b835cfc65b164f4b2a0ae0762bbffaad6532f131289175491214d23f",
+    "README.md": "966284e88d873eb815870ce2beab855bef86a47d18d424ef3411e61b9dc0e1c7",
+    "test.jsonl": "094b96f1470902fa2d8b2339acc6054f04a249e734fb05b44d35d14668aa4721",
+    "train.jsonl": "5d8aeba3aa01207dfc86631e84514026308f93f6b9934a4039c3482a2a3d8975",
+    "validation.jsonl": "3b9614c6ca3f0aa442996cb8dc017b762de521d3cd9c5e237136444b6a8df834"
+  },
+  "dataset_server": {
+    "splits": [
+      {
+        "dataset": "pavan0202/swedish-grammaticality-training",
+        "config": "default",
+        "split": "train"
+      },
+      {
+        "dataset": "pavan0202/swedish-grammaticality-training",
+        "config": "default",
+        "split": "calibration"
+      },
+      {
+        "dataset": "pavan0202/swedish-grammaticality-training",
+        "config": "default",
+        "split": "validation"
+      },
+      {
+        "dataset": "pavan0202/swedish-grammaticality-training",
+        "config": "default",
+        "split": "test"
+      },
+      {
+        "dataset": "pavan0202/swedish-grammaticality-training",
+        "config": "synthetic_bridge",
+        "split": "train"
+      },
+      {
+        "dataset": "pavan0202/swedish-grammaticality-training",
+        "config": "synthetic_bridge",
+        "split": "validation"
+      },
+      {
+        "dataset": "pavan0202/swedish-grammaticality-training",
+        "config": "synthetic_bridge",
+        "split": "test"
+      }
+    ],
+    "pending": [],
+    "failed": []
+  }
+}

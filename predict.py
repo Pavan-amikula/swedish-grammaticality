@@ -12,18 +12,30 @@ class EncoderScorer:
         from transformers import AutoModelForSequenceClassification, AutoTokenizer
         torch.set_num_threads(4)
         self.tokenizer = AutoTokenizer.from_pretrained(directory)
-        self.model = AutoModelForSequenceClassification.from_pretrained(directory,attn_implementation="eager").eval()
+        config = json.loads((Path(directory)/"config.json").read_text(encoding="utf-8"))
+        attention = config.get("scoring_attention_implementation", "sdpa" if config.get("model_type")=="bert" else "eager")
+        self.model = AutoModelForSequenceClassification.from_pretrained(directory,attn_implementation=attention).eval()
 
     def __call__(self, texts):
         import torch
         if not texts:
             return torch.empty(0)
-        result = []
+        encoded = self.tokenizer(texts,truncation=True,max_length=getattr(self.model.config,"scoring_max_length",128))
+        order = sorted(range(len(texts)),key=lambda i:len(encoded["input_ids"][i]))
+        result = torch.empty(len(texts))
         with torch.no_grad():
             for i in range(0,len(texts),16):
-                batch = self.tokenizer(texts[i:i+16],padding=True,truncation=True,max_length=128,return_tensors="pt")
-                result.append(self.model(**batch).logits.squeeze(-1).clamp(0,1))
-        return torch.cat(result)
+                indices = order[i:i+16]
+                batch = self.tokenizer.pad([{k:v[j] for k,v in encoded.items()} for j in indices],
+                                           padding=True,return_tensors="pt")
+                logits = self.model(**batch).logits
+                if logits.shape[-1] == 1:
+                    scores = logits.squeeze(-1).clamp(0,1)
+                else:
+                    index = self.model.config.label2id["correct"]
+                    scores = logits.softmax(dim=-1)[:,index]
+                result[indices] = scores
+        return result
 
 
 def main():

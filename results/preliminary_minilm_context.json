@@ -1,0 +1,14 @@
+{
+  "curation_version": "v1-derived-corrections",
+  "source_data_sha256": {
+    "train.jsonl": "7bc0b16d0884fe4d0a234fc8ce71595f12407edf79b4d955831752589fe4dd5a",
+    "calibration.jsonl": "ae68774c26d9783534a95572897f137975f63aeffeda72a90a630d68a3b842f3",
+    "validation.jsonl": "452e37dc76ceea89c25f25b75aab285738cb085cb3d392f0fbf7ae16656d1867",
+    "test.jsonl": "4e1421b81263dabd4953248e4887c9b774a188a750ad540b742820a5dfa0ce77",
+    "bridge_train.jsonl": "9158aabe515f83905917d195c833d710ef8b30957ebbfaebd6bf8f2e46562f40",
+    "bridge_validation.jsonl": "fb47409b74f38c1d91989b8c0da2710d459256a5f96199ae34b332196cf13b92",
+    "provenance.json": "f39ba37aab330372658fe6c583182cd62098c8f22991275f7be42fb511fbe5ae"
+  },
+  "reproduction": "python prepare_grammar_data.py --allow-unconfirmed-corrections; python experiments/train_minilm.py",
+  "status": "preliminary dataset superseded by source-confirmed positive pairing"
+}

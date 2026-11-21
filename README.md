@@ -1,171 +1,150 @@
 # Swedish grammaticality scoring
 
 Author: **Pavan Kumar Goud Amikula**, MSc Computer Science student,
-Blekinge Institute of Technology. Public repositories:
+Blekinge Institute of Technology.
 
-- GitHub: [Pavan-amikula/swedish-grammaticality](https://github.com/Pavan-amikula/swedish-grammaticality)
-- Model: [pavan0202/swedish-grammaticality](https://huggingface.co/pavan0202/swedish-grammaticality)
-- Dataset: [pavan0202/talbanken-synthetic-grammaticality](https://huggingface.co/datasets/pavan0202/talbanken-synthetic-grammaticality)
+A CPU-trained Swedish correctness scorer with **149,606,402
+parameters**, below the 1.3B limit. It returns the probability of the `correct`
+class, between 0 and 1. It uses paired fine-tuning of the last six blocks. The native Transformers checkpoint
+has two logits; the temperature calibration is already folded into its weights.
+The score is not a human-validated severity rating.
 
-Immutable Hub revisions and fresh-download verification are recorded in
-results/publication.json. The exact published data matches local files; the
-Hub uses flat encoder_train.jsonl/encoder_validation.jsonl filenames, while
-this repository keeps those files under data/encoder/. Their contents match.
+- Code: https://github.com/Pavan-amikula/swedish-grammaticality
+- Model: https://huggingface.co/pavan0202/swedish-grammaticality
+- Current training data: https://huggingface.co/datasets/pavan0202/swedish-grammaticality-training
+- Original synthetic baseline data: https://huggingface.co/datasets/pavan0202/talbanken-synthetic-grammaticality
+- [Paper](report.pdf), [editable paper](report.md), [requirement check](REQUIREMENTS_CHECK.md)
+- [Submission email draft](SUBMISSION_EMAIL.md), [publication record](PUBLISHING.md)
+- [Explanation guide](EXPLAINING_THE_PROJECT.md)
 
-The complete local folder includes the saved encoder weights (about 598 MB).
-The source archive and GitHub exclude that large weight file; use the training
-commands below, or the automatic verified Hub download, to obtain it.
+## Reproduce the selected model
 
-A CPU prototype that outputs a score in [0,1]. The selected model is a frozen
-Scandinavian ModernBERT-base encoder with mean pooling and a ridge-fitted
-linear regression head: **149,605,633 total parameters**, 769 fitted
-head parameters. It is saved in standard Transformers/Hugging Face format.
-The fitted scalar is clipped to [0,1]; it is an acceptability proxy rather
-than a calibrated human judgment. The hidden evaluation set is unavailable.
-
-## Read first
-
-- [Submission requirements check](REQUIREMENTS_CHECK.md).
-
-- [Official assignment](https://nicher92.github.io/swedish_correctness_classifier/#task).
-- [Two-page paper](report.pdf), editable [paper text](report.md).
-- [Data card and licensing](data/README.md), [publication plan](PUBLISHING.md),
-  and [unsent submission email draft](SUBMISSION_EMAIL.md).
-- [What to understand before submission](EXPLAINING_THE_PROJECT.md).
-
-## Reproduce from scratch
-
-This reproduces the project's data preparation and scoring-head fit from the
-fixed pretrained checkpoint; it does not repeat large-scale encoder pretraining.
-
-Tested on Windows, Python 3.13.4, Intel i7-1165G7 (4 cores/8 logical CPUs),
-16 GB RAM, CPU-only PyTorch. Run in this project directory. A virtual
-environment is recommended. No GPU, paid services, API keys or private data
-are used. Initial encoder download is approximately 600 MB. Training itself
-took 227.6 seconds in this run; runtime varies.
+Tested with Python 3.13.4, CPU-only PyTorch, Windows, Intel i7-1165G7 and 16 GB
+RAM. Use this project directory as the working directory. No paid compute,
+API inference service or GPU is needed. The initial base-model download is
+about 600 MB. Large weight files are on Hugging Face rather than in GitHub.
 
 ```bash
 python -m venv .venv
-# Windows PowerShell: .venv\Scripts\Activate.ps1
-# macOS/Linux: source .venv/bin/activate
+# Windows: .venv\Scripts\Activate.ps1
+# Linux/macOS: source .venv/bin/activate
 python -m pip install -r requirements.txt
 python prepare_data.py
-python train.py
-python train_encoder.py
+python prepare_grammar_data.py
+python train_grammar.py
 python -m unittest discover -s tests -v
-python benchmark.py --name synthetic
-python analyze_errors.py
+python predict.py --input test.jsonl --output scores.jsonl
 ```
 
-Direct dependency versions are pinned. The observed package-version snapshot
-is results/environment-full.txt; it describes this machine and is not a
-portable installation lock. Source data/model revisions, random seeds and
-source SHA-256 hashes are pinned in code and provenance.json. CPU eager
-attention is explicit; seeds and deterministic PyTorch algorithms are set.
-Floating-point differences across operating systems/BLAS versions may remain.
-Data generation uses canonical LF line endings and is byte reproducible.
-Test scores never select hyperparameters. A 16-example eager/SDPA parity check
-passed at tolerance 1e-4; its single-batch timings did not justify changing
-attention implementations. The final model uses eager attention.
+This reproduces data preparation and downstream training from the fixed base
+checkpoint, not the base model's large-scale pretraining. Direct dependencies,
+base-model/data revisions, source hashes, seed 42, CPU thread count and training
+hyperparameters are recorded. Floating-point differences across platforms may
+remain. See results/grammar_protocol.json and results/grammar_training.json.
+Training and export elapsed 78070.4 seconds in this run,
+including substantial machine pauses; this is not uninterrupted CPU time.
 
-The count baseline uses a separate clean-text partition to avoid memorizing
-the same sentences it scores during head training. train_encoder.py uses
-1,257 examples from 256 sentence groups for its head, and 632 examples from
-128 disjoint validation groups. Source document boundaries are kept apart.
-It compares ridge strengths 10/100/1000 and selects 1000 by validation AUC.
-selection.json selects the encoder over the count model on the same validation
-subset (0.676 versus 0.578).
+The preprocessing retains only released error sentences whose source-provided
+correction matches a sentence explicitly labeled correct in the same upstream
+split. Spaces around omitted tokens are resolved only by matching a released
+positive. A connected-component graph keeps corrected sentences and their
+variants together; cross-split families are excluded from earlier splits.
+Source text is not lowercased for input. Demographics and essay metadata are
+not used. There are 4,000 training pairs, 500 calibration pairs, 629 validation
+pairs and 590 test pairs, plus a small, separately split synthetic bridge.
+Full details and licenses are in data/grammar/README.md.
 
-## Predict using the required interface
+The fixed validation objective is 0.75 learner AUC + 0.25 bridge AUC. The
+previous submission is replaced only when learner validation AUC increases by
+at least 0.02, bridge AUC drops by no more than 0.02, and the objective improves.
+Tests are evaluated after model selection. Temperature is fitted on separate
+calibration families. Calibration does not change ranking.
+
+## Required prediction interface
 
 ```bash
 python predict.py --input test.jsonl --output scores.jsonl
 ```
 
-Input: one JSON object per line, e.g. `{"id": 1, "text": "Hon läser en bok."}`.
-Output: `{"id": 1, "score": ...}`, with a finite scalar between 0 and 1.
-IDs and input order are preserved. Unicode, empty input files and empty texts
-are supported. Empty-text scores are numerically valid but have no linguistic
-interpretation. Long texts are truncated to 128 tokenizer tokens; this can
-miss errors near the end. Inference is CPU-only, 16 examples per model batch.
+Input: one JSON object per line containing `id` and string `text`. Output:
+exactly `id` and a finite float `score` in [0,1], one row per input. IDs and
+input order are preserved, including duplicate IDs. Empty files and Unicode
+are supported. Empty-text scores have no linguistic interpretation.
 
-The supplied selected directory is encoder_model; both it and model (the small
-count baseline) can be passed explicitly with `--model LOCAL_DIRECTORY`.
-The default is read from selection.json, independent of the working directory.
-The verified model ID and immutable revision are recorded in selection.json,
-so fresh clones download the checkpoint when local weights are absent. You
-can also pass a model ID explicitly with `--model`.
+The default checkpoint is grammar_model. If its weights are absent in a fresh
+checkout, predict.py downloads the immutable Hub revision in selection.json.
+`--model LOCAL_DIRECTORY_OR_HUB_ID` overrides it. The selected model uses
+128 tokenizer tokens; later text is truncated. Inputs are length-bucketed
+within bounded batches to reduce padding, then restored to input order.
 
-Standard selected-model loading (model outputs raw regression logits; clip):
+Native loading (calibration is already applied; do not apply temperature twice):
 
 ```python
-import torch, json
+import json, torch
 from pathlib import Path
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
-selection = json.loads(Path("selection.json").read_text())
-tok = AutoTokenizer.from_pretrained("pavan0202/swedish-grammaticality", revision=selection["hub_revision"])
+settings = json.loads(Path("selection.json").read_text())
+tok = AutoTokenizer.from_pretrained(settings["hub_model_id"], revision=settings["hub_revision"])
 model = AutoModelForSequenceClassification.from_pretrained(
-    "pavan0202/swedish-grammaticality", revision=selection["hub_revision"],
+    settings["hub_model_id"], revision=settings["hub_revision"],
     attn_implementation="eager").eval()
-batch = tok(["Hon läser en bok."], padding=True, truncation=True,
-            max_length=128, return_tensors="pt")
+batch = tok(["Hon läser en bok."], truncation=True, max_length=128, return_tensors="pt")
 with torch.no_grad():
-    scores = model(**batch).logits.squeeze(-1).clamp(0, 1)
+    score = model(**batch).logits.softmax(-1)[:, model.config.label2id["correct"]]
 ```
 
-## Actual results
+## Measured results
 
-| Evaluation | n | Spearman | ROC-AUC | MAE | Samples/min |
-|---|---:|---:|---:|---:|---:|
-| Synthetic UD test | 5273 | 0.248 | 0.678 | 0.299 | 442 |
-| Official starter test | 120 | 0.400 | 0.689 | 0.345 | 114 |
+| Evaluation | n | Previous AUC | Selected AUC | Selected Spearman |
+|---|---:|---:|---:|---:|
+| Source-confirmed learner pairs | 1180 | 0.606 | 0.731 | 0.400 |
+| Synthetic bridge holdout | 400 | 0.681 | 0.750 | 0.433 |
+| Official starter | 120 | 0.689 | 0.830 | 0.635 |
 
-Whole-process time, including imports and model loading: synthetic
-715.51 s; starter 62.93 s. These are single local runs,
-not organizer hardware results. Benchmark logs are in results/. The unmodified
-official evaluate.py was also run; see results/official_evaluator.txt. The
-starter has continuous scores, while our synthetic test has binary targets;
-their MAEs and Spearman correlations answer different questions.
+On the learner holdout, strict pair ranking accuracy is
+0.847, versus
+0.742 previously. The group-bootstrap
+95% interval for the AUC difference is
+[0.106, 0.144].
+This paired subset differs from the full DaLAJ benchmark, so these scores
+must not be compared directly with published full-DaLAJ scores.
 
-For context, the assignment's published ModernBERT-large/SVR starter baseline
-reports Spearman 0.528 and AUC 0.783 on this toy test, using its toy training
-data. Those are published reference values, not a baseline reproduced here.
-This prototype falls short of that reference; its data and model setup differ.
-Hardware differs too, so the published speed is not a fair timing comparison.
+The official starter evaluator passed. Its measured whole-prediction time was
+21.1 seconds (341 samples/min), including model
+loading and imports. Timing is from the upstream evaluator's rounded output.
+Organizer hardware/hidden-test performance is unknown. The assignment's
+published starter reference is Spearman 0.528 and AUC 0.783; it is not a
+baseline retrained here and uses a different model/training set.
 
-The count baseline achieved test AUC 0.573 and
-Spearman 0.102. Its MAE
-0.325 should be compared with the constant predictor's
-0.325; it is weak. Initial count-only test diagnostics
-were inspected before the encoder experiment. The encoder's test predictions
-were made only after validation selection. One correction to count-model
-sentence-start normalization was made during code review; final results use
-the corrected implementation. Do not describe the entire development process
-as a single blind test.
+The starter test had already been inspected during the initial prototype. It
+was not used to select this replacement. The independent learner test was
+scored only after validation selection. See results/promotion_decision.json,
+results/grammar_error_analysis.json and the raw prediction files.
 
-To rerun the starter check without redistributing its unlicensed data/code:
+## Experiments and files
 
-```bash
-git clone https://github.com/nicher92/swedish_correctness_classifier.git .cache/starter
-git -C .cache/starter checkout a3f4f81b16694473f528975f20939e4ca586c88a
-python .cache/starter/evaluate.py --repo . --input .cache/starter/data/test.jsonl --labels .cache/starter/data/test_labels.jsonl --output results/starter_scores.jsonl
-python benchmark.py --input .cache/starter/data/test.jsonl --labels .cache/starter/data/test_labels.jsonl --name starter
-```
+- prepare_grammar_data.py: fixed, source-confirmed pair preparation.
+- train_grammar.py: frozen-head fit, paired contextual fine-tuning, calibration.
+- evaluate_grammar.py and decide_promotion.py: validation comparison and guard.
+- analyze_grammar_results.py: fixed holdout comparison and family bootstrap.
+- experiments/train_minilm.py: preliminary semantic-encoder experiment. It used
+  the earlier pair-curation rule and is not a matched final-data ablation.
+  Reproduce it separately with `prepare_grammar_data.py --allow-unconfirmed-corrections`.
+  Do not overwrite the selected preparation when running it.
+- train.py/model/: original count baseline; train_encoder.py/encoder_model/:
+  original synthetic-data regression baseline. Their results are retained.
 
-## Limitations
+## Limitations and licenses
 
-Training uses licensed UD prose plus automatic edits, not Swedish learner
-judgments. Deletion/swaps may preserve grammaticality; spelling errors are
-mixed with grammar, and the 1:4 class ratio affects the regression scale.
-No human calibration validates what a score such as 0.7 means. Domain shift,
-rare grammatical vocabulary, negation, word order, agreement, long documents
-and foreign-language inputs remain limitations. The pretrained encoder's
-training corpus may overlap public UD text; that overlap was not audited.
-Do not use this prototype for consequential language assessment.
+The corpus uses partially normalized learner sentences and single-error
+variants, not complete untouched essays. Source-positive matching excludes
+many complex corrections. Binary correctness probabilities do not calibrate
+human error severity. Lexical/punctuation labels can depend on context.
+Writer/essay IDs are unavailable; direct families/text are separated, but
+writer-level and pretraining overlap cannot be audited. Rare vocabulary,
+pseudonyms, long text and domain shift can affect scores. No independent
+native-speaker review was performed for this project.
 
-No native-speaker review or human score calibration was performed.
-
-New project code: MIT. Dataset and count tables: CC BY-SA 4.0. Pretrained and
-adapted encoder: Apache 2.0 with retained upstream card/license/notices. See
-LICENSE, data/LICENSE.txt and encoder_model/NOTICE. Public links are above;
-the final submission email has not been sent.
+Code: MIT. Base/adapted model: Apache 2.0. DaLAJ files: CC BY 4.0; synthetic
+bridge: CC BY-SA 4.0. Required original notices and citations are retained.
+The submission email remains unsent pending final approval.

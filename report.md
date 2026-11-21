@@ -1,50 +1,53 @@
-# Swedish grammaticality scoring on a CPU
+# Swedish grammaticality scoring with correction pairs
 
-Pavan Kumar Goud Amikula | MSc Computer Science, Blekinge Institute of Technology | 20 November 2026
+Pavan Kumar Goud Amikula | MSc Computer Science, Blekinge Institute of Technology | 21 November 2026
 
 ## Approach
 
-A frozen Scandinavian ModernBERT-base encoder [2] supplies contextual representations. Real token vectors are mean-pooled and passed through the pretrained prediction head. A ridge regressor predicts synthetic acceptability labels; its scaler is absorbed into a native linear regression layer. The saved Transformers checkpoint has 149,605,633 parameters, below the assignment's 1.3B limit, of which 769 regression coefficients/bias were fitted. predict.py clips raw predictions to [0,1] and implements the required JSONL interface [1].
+The selected model uses paired fine-tuning of the last six blocks of Scandinavian ModernBERT-base [1], with masked mean pooling and a two-class prediction head. Its score is P(correct), a scalar in [0,1]. The checkpoint contains 149,606,402 parameters, below the assignment's 1.3B limit [2], and is saved in native Transformers format. A scalar temperature, fitted on reserved calibration families and folded into the final weights, adjusts confidence without changing ranking.
 
-This avoids expensive full encoder fine-tuning on a CPU and produces a standard Hugging Face artifact. A small count-language-model baseline offers a transparent comparison. Full fine-tuning, prompting and paid compute were not attempted or measured.
+Partial fine-tuning keeps CPU training manageable while allowing grammaticality supervision to change contextual representations. The paired objective combines classification loss with a ranking loss favoring the corrected member of each pair. Earlier contextual blocks and embeddings stay fixed. This is a correctness-confidence score, not a human-validated measure of error severity.
 
-## Data and labels
+## Data and provenance
 
-UD Swedish-Talbanken r2.17 [3], commit 463c1eb7176c19e8d7cc54e5f5b0f21d6d6ce44d, provides informative Swedish prose. Its CC BY-SA 4.0 license, acknowledgments and upstream documentation are retained. Sentences are filtered to 6-60 whitespace words. Each unchanged sentence receives target 1; up to four generated variants receive 0: adjacent token swap, function-word deletion, word duplication and final-letter deletion. These are noisy binary proxy labels, not human severity ratings. Some edits preserve grammar; some affect spelling.
+DaLAJ-GED-SuperLim [3], released under CC BY 4.0, supplies learner-error sentences, expert corrections and correct-labeled sentences. An error/correction pair is retained only when the correction, with source-compatible spacing, matches a released positive in the same upstream split. The actual released positive text is used; no new linguistic judgments are added. Source revisions and hashes are pinned. Learner demographics are omitted.
 
-Official UD document splits are retained, cross-split source duplicates are removed, and every source sentence stays with its variants. Training documents are divided into clean count-model learning (2,384 sentences) and scoring calibration (6,242 rows). Full validation/test contain 2,253/5,273 rows. The encoder uses deterministic subsets of 256 calibration groups (1,257 rows) and 128 validation groups (632 rows). Document IDs and normalized text are checked for cross-partition overlap. Near duplicates and possible pretrained-corpus overlap remain unaudited.
+A graph connects repeated sentences and correction variants using normalized, case-folded family keys. Official test families take precedence over development and training. One error per family is chosen deterministically. There are 4,000 training, 500 calibration, 629 validation and 590 test pairs. Another 400 training, 200 validation and 200 test pairs come from licensed Talbanken text with automatic edits [4]. Text/family overlap checks passed. Writer IDs are unavailable, so writer-level overlap cannot be verified.
 
-## Experiments and reproducibility
+## Experiments and selection
 
-The count baseline fits ridge on word/character surprisal and unknown-token features. The encoder compares ridge penalties 10, 100 and 1000; 1000 wins validation AUC. On the same 632 validation rows, encoder AUC is 0.676, versus 0.578 for the count model. Selection precedes the encoder test evaluation. Initial count-only test diagnostics were inspected earlier; a count-model sentence-start normalization bug was corrected during review. Thus the entire development history is not a single blind test.
+The initial count and frozen-regression baselines were weak. A preliminary MiniLM semantic-encoder configuration did not yield useful validation results; it used an earlier curation rule and is not a matched final-data comparison. On the final data, a fitted frozen head is compared with two epochs of fine-tuning the last six blocks. The fixed objective is 0.75 learner-validation AUC + 0.25 synthetic-validation AUC. Replacement also requires learner AUC to improve by at least 0.02 without a bridge-AUC drop exceeding 0.02.
 
-Seeds are 42, versions/revisions and source hashes are pinned, and training uses deterministic CPU eager attention. Encoder fitting and export took 227.6 seconds in this run. Scripts reproduce data, fitting, export, tests and timing. Tests cover split leakage, serialization, score bounds, Unicode/empty inputs and the command-line contract. Cross-platform floating-point variation is possible.
+The frozen head reached learner-validation AUC 0.632; paired adaptation reached 0.715. AdamW uses encoder/head learning rates 3e-5/3e-4, batch 16, weight decay .01, 6% warmup and 128 tokens. Seed 42 and full reproduction commands are recorded. Checkpoint selection uses validation only, calibration separate families, and tests follow selection. Training/export elapsed 78070 seconds including substantial machine pauses; this is not uninterrupted CPU time.
 
 ## Measured results
 
-All numbers below are from actual local runs on Windows, Python 3.13.4, Intel Core i7-1165G7, 16 GB RAM, CPU-only PyTorch, with four inference threads. Speed includes imports, model loading and writing output. These single-run timings are not comparable to different organizer hardware. The hidden organizer test was unavailable.
+All reported results are actual local measurements on an Intel i7-1165G7, 16 GB RAM, Windows and CPU-only PyTorch, using four inference threads. The new and previous models are compared on the same held-out inputs. The source-confirmed paired subset is not the full DaLAJ benchmark.
 
-| Evaluation | n | Spearman | ROC-AUC | MAE | Samples/min |
-|---|---:|---:|---:|---:|---:|
-| Synthetic UD test | 5273 | 0.248 | 0.678 | 0.299 | 442 |
-| Official starter test | 120 | 0.400 | 0.689 | 0.345 | 114 |
+| Evaluation | n | Previous AUC | Selected AUC | Selected Spearman |
+|---|---:|---:|---:|---:|
+| Source-confirmed learner pairs | 1180 | 0.606 | 0.731 | 0.400 |
+| Synthetic bridge holdout | 400 | 0.681 | 0.750 | 0.433 |
+| Official starter | 120 | 0.689 | 0.830 | 0.635 |
 
-Elapsed times: 715.51 seconds for the synthetic test and 62.93 seconds for the 120-row starter test. The unmodified official evaluator also passed (43.8 seconds, 164 samples/min on its separate run). Binary synthetic targets and continuous starter targets measure different tasks. The count baseline test AUC is 0.573, Spearman 0.102, MAE 0.325; constant-mean MAE is 0.325. The starter's published encoder/SVR baseline reports Spearman 0.528 and AUC 0.783 [1], which this prototype does not match. That reference uses different training data/model setup and was not reproduced locally; its speed is not directly comparable.
+The learner-test AUC improvement has a family-bootstrap 95% interval of [0.106, 0.144] (1,000 resamples, seed 42). Strict correct-over-error pair accuracy is 0.847, versus 0.742 previously. The official evaluator passed the required JSONL interface and measured 21.1 seconds, or 341 samples/min, including imports and model loading. Its timing output is rounded. Hidden organizer results and speed on their hardware are unknown.
 
-## Limitations and error analysis
+For context, the assignment's published baseline reports Spearman 0.528 and AUC 0.783 on its starter test [2]. That model was not retrained here and uses different training data. No claim of universal best performance or guaranteed selection is made.
 
-The model measures resemblance to a synthetic training distribution rather than verified human grammaticality. A score such as 0.7 has no validated severity interpretation. Class imbalance, dated prose and artificial edits can bias the scale. Frozen representations and small calibration data limit sensitivity to agreement, word order and context. Inputs are truncated to 128 tokenizer tokens, potentially missing later errors. Swedish proficiency of the applicant is beginner; no native-speaker annotation or validation is claimed.
+## Limitations and actual error example
 
-An actual held-out misranking (sv-ud-test-24): original 'Undantagandet kan även påverka pensionsrätten av anställningsinkomst.' receives 0.198; changed 'Undantagandet kan även pensionsrätten påverka av anställningsinkomst.' receives 0.452. The edit type is an adjacent-token swap; no independent human grammaticality claim is made. More actual pairs and per-edit ranking accuracy are recorded in results/error_analysis.json. A small human-rated Swedish set, with genuinely graded targets and separate calibration, is the most useful next improvement.
+The data is partially normalized, single-error learner language. Requiring a confirmed positive excludes some complex corrections and changes the evaluation distribution. Binary labels do not validate human severity scores. Lexical and punctuation decisions may be context-dependent. Near duplicates, writer style and pretraining overlap cannot be fully excluded. Inputs are truncated at 128 tokens. Rare words, pseudonyms and other domains remain risks; no independent native-speaker review is claimed.
 
-## Availability
+An actual held-out pair (source category S): corrected 'Därför började jag min i kurs tyska och jag gick på olika fester.' scores 0.047; error version 'Därför började jag min kurs tyska och jag gick på olika fester.' scores 0.514. These labels come from the released dataset, not a new linguistic assessment. More error slices and raw predictions are included in the repository.
 
-Code: github.com/Pavan-amikula/swedish-grammaticality. Model ID: pavan0202/swedish-grammaticality. Dataset ID: pavan0202/talbanken-synthetic-grammaticality. Immutable Hub revisions and fresh-download verification records are included in the repository.
+## Availability and references
 
-## References
+Code: github.com/Pavan-amikula/swedish-grammaticality. Model: pavan0202/swedish-grammaticality. Training data: pavan0202/swedish-grammaticality-training. Exact revisions and verification are recorded in the repository.
 
-[1] AI Sweden. Swedish Grammaticality Scoring: Master's Thesis Assignment. https://nicher92.github.io/swedish_correctness_classifier/ (accessed 20 November 2026). Starter commit a3f4f81b16694473f528975f20939e4ca586c88a.
+[1] AI-Sweden-Models. ModernBERT-base model card, Apache 2.0. huggingface.co/AI-Sweden-Models/ModernBERT-base. Revision 0bf738233da3c1bd32bc88cdbeb2c2c01dbac0eb.
 
-[2] AI-Sweden-Models. ModernBERT-base model card (Apache 2.0), revision 0bf738233da3c1bd32bc88cdbeb2c2c01dbac0eb. https://huggingface.co/AI-Sweden-Models/ModernBERT-base .
+[2] AI Sweden. Swedish Grammaticality Scoring: Master's Thesis Assignment. nicher92.github.io/swedish_correctness_classifier/ (accessed 21 November 2026).
 
-[3] Nivre, Smith, Norrman and contributors. UD Swedish-Talbanken r2.17 (CC BY-SA 4.0); based on Talbanken (Einarsson, 1976). https://github.com/UniversalDependencies/UD_Swedish-Talbanken .
+[3] Volodina, Ali Mohammed, Berdicevskis, Bouma and Öhman. 2023. DaLAJ-GED. NLP4CALL, pp. 94-101. doi.org/10.23695/kxvz-tx42; aclanthology.org/2023.nlp4call-1.11/.
+
+[4] Nivre, Smith, Norrman and contributors. UD Swedish-Talbanken r2.17, CC BY-SA 4.0. github.com/UniversalDependencies/UD_Swedish-Talbanken.

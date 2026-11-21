@@ -1,0 +1,11 @@
+{
+  "n": 120,
+  "roc_auc": 0.8302777777777778,
+  "spearman": 0.6348897680831145,
+  "seconds": 21.1,
+  "samples_per_minute": 341.0,
+  "timing_source": "upstream evaluator rounded output",
+  "evaluator_revision": "a3f4f81b16694473f528975f20939e4ca586c88a",
+  "includes_model_loading_and_imports": true,
+  "selection_used_starter_scores": false
+}

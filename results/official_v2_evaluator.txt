@@ -1,0 +1,8 @@
+W1121 22:27:06.860000 5708 site-packages\torch\distributed\elastic\multiprocessing\redirects.py:29] NOTE: Redirects are currently not supported in Windows or MacOs.
+Loading weights:   0%|          | 0/138 [00:00<?, ?it/s]Loading weights:  19%|#8        | 26/138 [00:00<00:00, 256.38it/s]Loading weights:  38%|###7      | 52/138 [00:00<00:00, 193.29it/s]Loading weights:  53%|#####2    | 73/138 [00:00<00:00, 181.56it/s]Loading weights: 100%|##########| 138/138 [00:00<00:00, 296.79it/s]
+
+120 test examples, timing covers the whole predict.py run including model loading
+
+| Spearman | ROC-AUC | Time (s) | Samples/min |
+|---|---|---|---|
+| 0.635 | 0.830 | 21.1 | 341 |

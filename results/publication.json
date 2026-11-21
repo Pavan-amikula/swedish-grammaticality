@@ -1,26 +1,23 @@
 {
   "model_id": "pavan0202/swedish-grammaticality",
-  "model_revision": "609cbf7e1f21c3de16bad534c068f9277324a896",
-  "binary_and_config_files_verified": [
-    "model.safetensors",
-    "config.json",
-    "tokenizer.json",
-    "tokenizer_config.json"
-  ],
+  "model_revision": "5d47d15a9e0970cf8adac99c7085c93d6eeb1fa3",
   "download_sha256_matches": true,
-  "dataset_id": "pavan0202/talbanken-synthetic-grammaticality",
-  "dataset_revision": "b9ad327da01ac92f19338fa83fb26f32b5d4ae02",
-  "files_verified": 10,
-  "github_repository": "https://github.com/Pavan-amikula/swedish-grammaticality",
-  "dataset_viewer_splits_verified": 6,
-  "submission_email_sent": false,
-  "fresh_checkout_inference": {
-    "tested_git_commit": "b32ae010b9ee74c0403375cf089475c48b99967c",
-    "samples": 120,
-    "ids_match": true,
-    "max_abs_score_difference": 0.0,
-    "default_cli_and_hub_fallback_used": true
+  "model_files_sha256": {
+    "model.safetensors": "e7006158763d5213a077634111aecff67e60a59e1badca6a5f4f92fcb3fcf36d",
+    "config.json": "1ec58bd3126db94f69460201def5228f6ba7055851e5c29c33f39dfbef16f94e",
+    "tokenizer.json": "58a60d3bae3f885989da6ab0c3ad0ed311e3e733e8527aead8e14f9c88ed5aa2",
+    "tokenizer_config.json": "bf658404babfeca805978a264a4addf344a1c55f5d6939212eaff274d8e909f3",
+    "README.md": "6258e9f8c5c44c77e918cf4f0ef65ca67f0e446eecea4299ce7f7483e33554ba",
+    "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "NOTICE": "147d3103ae3400823342e31c13ab14b242dc885c763ea6cf373cd0fd279567ec",
+    "BASE_MODEL_CARD.md": "19813431df2ec625b7f9255b7ad8cf6c10c6d8d86ac83aacfbc27c795d18c8f8"
   },
-  "model_parameter_count_verified": 149605633,
-  "documentation_only_revision_weights_unchanged": true
+  "model_parameter_count_verified": 149606402,
+  "dataset_id": "pavan0202/swedish-grammaticality-training",
+  "dataset_revision": "00c58431768558186c8f4a11306fd5392f2250a0",
+  "dataset_files_verified": 11,
+  "dataset_viewer_splits_verified": 7,
+  "github_repository": "https://github.com/Pavan-amikula/swedish-grammaticality",
+  "submission_email_sent": false,
+  "legacy_model_revision": "609cbf7e1f21c3de16bad534c068f9277324a896"
 }

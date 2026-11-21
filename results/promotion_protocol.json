@@ -1,0 +1,18 @@
+{
+  "selection_uses": [
+    "validation",
+    "bridge_validation"
+  ],
+  "primary_objective": "0.75*human_validation_auc+0.25*ud_validation_auc",
+  "replacement_conditions": [
+    "human validation AUC improves by at least 0.02 over legacy",
+    "synthetic bridge validation AUC drops by no more than 0.02",
+    "weighted validation objective improves"
+  ],
+  "test_splits_not_used_for_selection": [
+    "grammar/test",
+    "UD test",
+    "starter test"
+  ],
+  "calibration_split_only_used_for_temperature": true
+}

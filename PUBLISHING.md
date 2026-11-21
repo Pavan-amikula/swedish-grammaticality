@@ -1,30 +1,26 @@
 # Publication record
 
-Publishing was authorized by Pavan on 20 November 2026. The final submission
-email remains unsent and requires separate approval.
+Author: Pavan Kumar Goud Amikula. Updated 21 November 2026.
 
-- GitHub: https://github.com/Pavan-amikula/swedish-grammaticality
-- Model: https://huggingface.co/pavan0202/swedish-grammaticality
-- Dataset: https://huggingface.co/datasets/pavan0202/talbanken-synthetic-grammaticality
-- Model revision: `609cbf7e1f21c3de16bad534c068f9277324a896`
-- Dataset revision: `b9ad327da01ac92f19338fa83fb26f32b5d4ae02`
+The stronger model and cleaned training data are public. This record does not
+constitute sending the assignment email.
 
-A fresh public download matched the model weights, configuration and tokenizer
-files byte for byte. All ten published dataset files matched the upload staging
-files; the Hugging Face viewer successfully loaded all six splits across three
-configurations. Verification details are in results/publication.json.
+| Artifact | Public location | Immutable revision |
+|---|---|---|
+| Code | https://github.com/Pavan-amikula/swedish-grammaticality | Git commit history |
+| Selected model | https://huggingface.co/pavan0202/swedish-grammaticality | 5d47d15a9e0970cf8adac99c7085c93d6eeb1fa3 |
+| Current data | https://huggingface.co/datasets/pavan0202/swedish-grammaticality-training | 00c58431768558186c8f4a11306fd5392f2250a0 |
+| Legacy model | same model ID, old revision | 609cbf7e1f21c3de16bad534c068f9277324a896 |
+| Legacy data | https://huggingface.co/datasets/pavan0202/talbanken-synthetic-grammaticality | b9ad327da01ac92f19338fa83fb26f32b5d4ae02 |
 
-The published dataset uses encoder_train.jsonl and encoder_validation.jsonl at
-the root; the local repository keeps equivalent files under data/encoder/.
-The JSONL contents are identical. The model's ID and immutable revision are
-pinned in selection.json, allowing inference from a fresh GitHub checkout
-without committing the large model weight file to GitHub.
+The four core model files were downloaded and SHA-256 matched against local
+files. All 11 current data files matched, and the viewer exposes all seven
+splits with no pending/failed configurations. Exact verification is in
+results/publication.json and results/dataset_v2_verification.json. Eight tests
+passed; the official evaluator also passed. The clean-download prediction
+check is recorded separately in results/fresh_checkout_v2.json when complete.
 
-Review README.md, report.pdf, EXPLAINING_THE_PROJECT.md, measured results,
-limitations and the data provenance before submitting. The model
-performs below the starter's published baseline; no performance gain is claimed.
-The email draft is SUBMISSION_EMAIL.md; attach report.pdf. Do not send another
-acceptance email. Recipient: niclas.hertzberg@ai.se.
-
-Deadline from the supplied email: 4 December 2026, 23:59 CET
-(5 December 2026, 04:29 IST). No final submission has been sent.
+The final email is drafted in SUBMISSION_EMAIL.md and has **not been sent**.
+Attach report.pdf. The deadline supplied in the email summary is
+4 December 2026, 23:59 CET (5 December, 04:29 IST); the recipient is
+niclas.hertzberg@ai.se. Sending requires separate final approval.

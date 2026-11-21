@@ -6,3 +6,6 @@ data/source/
 *.zip
 .env
 .cache/
+data/grammar/source/
+candidates/
+grammar_model/*.safetensors

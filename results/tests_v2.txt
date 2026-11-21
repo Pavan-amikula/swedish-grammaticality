@@ -1,0 +1,19 @@
+test_correct_members_have_a_published_positive_label (test_grammar.GrammarTests.test_correct_members_have_a_published_positive_label) ... ok
+test_families_and_sentences_do_not_cross_partitions (test_grammar.GrammarTests.test_families_and_sentences_do_not_cross_partitions) ... ok
+test_pair_batches_keep_correction_before_error (test_grammar.GrammarTests.test_pair_batches_keep_correction_before_error) ... ok
+test_scoring_is_stable_when_length_sort_changes_order (test_grammar.GrammarTests.test_scoring_is_stable_when_length_sort_changes_order) ... W1121 23:16:33.644000 17588 site-packages\torch\distributed\elastic\multiprocessing\redirects.py:29] NOTE: Redirects are currently not supported in Windows or MacOs.
+Loading weights:   0%|          | 0/138 [00:00<?, ?it/s]Loading weights:  20%|##        | 28/138 [00:00<00:00, 276.21it/s]Loading weights:  41%|####      | 56/138 [00:00<00:00, 209.22it/s]Loading weights:  67%|######7   | 93/138 [00:00<00:00, 269.39it/s]Loading weights:  88%|########8 | 122/138 [00:00<00:00, 239.95it/s]Loading weights: 100%|##########| 138/138 [00:00<00:00, 264.08it/s]
+ok
+test_hub_save_reload_preserves_scores (test_project.ProjectTests.test_hub_save_reload_preserves_scores) ... ok
+test_language_model_probabilities_never_exceed_one (test_project.ProjectTests.test_language_model_probabilities_never_exceed_one) ... ok
+test_partitions_have_no_document_or_text_overlap (test_project.ProjectTests.test_partitions_have_no_document_or_text_overlap) ... ok
+test_required_cli_and_empty_input (test_project.ProjectTests.test_required_cli_and_empty_input) ... W1121 23:16:50.867000 19764 site-packages\torch\distributed\elastic\multiprocessing\redirects.py:29] NOTE: Redirects are currently not supported in Windows or MacOs.
+Loading weights:   0%|          | 0/138 [00:00<?, ?it/s]Loading weights:  14%|#3        | 19/138 [00:00<00:00, 182.06it/s]Loading weights:  30%|###       | 42/138 [00:00<00:00, 207.40it/s]Loading weights:  46%|####5     | 63/138 [00:00<00:00, 173.28it/s]Loading weights:  59%|#####8    | 81/138 [00:00<00:00, 172.34it/s]Loading weights: 100%|##########| 138/138 [00:00<00:00, 268.79it/s]
+ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 2968.466s
+
+OK
+Loading weights from local directory
+Loading weights from local directory

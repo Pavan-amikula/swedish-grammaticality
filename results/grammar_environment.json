@@ -1,0 +1,17 @@
+{
+  "python": "3.13.4 (tags/v3.13.4:8a526ec, Jun  3 2025, 17:46:04) [MSC v.1943 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "processor": "Intel64 Family 6 Model 140 Stepping 1, GenuineIntel",
+  "hardware": "Intel Core i7-1165G7, 4 cores / 8 logical processors, 16 GB RAM",
+  "cuda_available": false,
+  "packages": {
+    "torch": "2.11.0",
+    "transformers": "5.20.2",
+    "huggingface_hub": "2.2.0",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "scikit-learn": "1.7.0",
+    "safetensors": "0.8.0"
+  },
+  "training_elapsed_includes_machine_pauses": true
+}
